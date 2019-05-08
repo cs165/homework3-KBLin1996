@@ -25,5 +25,41 @@ class App {
     // Uncomment this pair of lines to see the "results" screen:
     // this.menu.hide();
     // this.results.show();
+
+    this.showMenu = this.showMenu.bind(this);
+    this.showMain = this.showMain.bind(this);
+    this.showResult = this.showResult.bind(this);
+    this.restartMain = this.restartMain.bind(this);
+
+    document.addEventListener('show-menu', this.showMenu);
+    document.addEventListener('show-main', this.showMain);
+    document.addEventListener('show-result', this.showResult);
+    document.addEventListener('restart-main', this.restartMain);
+  }
+
+  showMenu() {
+    this.flashcards.hide();
+    this.results.hide();
+    this.flashcards.reset();
+    this.menu.show();
+  }
+
+  showMain(event) {
+    this.menu.hide();
+    this.results.hide();
+    this.flashcards.show(event.detail.titleIndex);
+  }
+
+  showResult(event) {
+    this.menu.hide();
+    this.flashcards.hide();
+    this.results.show(event.detail.right, event.detail.wrong, event.detail.titleIndex);
+  }
+
+  restartMain(event) {
+    this.menu.hide();
+    this.results.hide();
+    this.flashcards.reset();
+    this.flashcards.show(event.detail.titleIndex);
   }
 }
