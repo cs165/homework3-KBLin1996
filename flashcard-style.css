@@ -1,20 +1,24 @@
 /*
 TODO(you): Write any additional styles you need here.
 */
-body.owo {
+body.answer
+{
     background-color: #97b7b7;
 }
 
-.flashcard-box .word {
+.flashcard-box .word
+{
     animation: slidein 0.5s;
 }
 
-@keyframes slidein {
-    0% {
+@keyframes slidein
+{
+    0%
+    {
         margin-top: 100%;
     }
-    100% {
+    100%
+    {
         margin-top: 0%;
     }
 }
-© 2019 GitHub, Inc.

@@ -3,7 +3,8 @@
  * If you need to add additional CSS styling, please change
  * `flashcard-style.css` instead.
  */
-body {
+body
+{
   background-color: #d0e6df;
   color: #777e8c;
   font-family: 'Open Sans', sans-serif;
@@ -20,12 +21,14 @@ body {
   justify-content: center;
 }
 
-#choices div {
+#choices div
+{
   display: flex;
   align-items: flex-start;
 }
 
-#choices div, .menu-buttons button {
+#choices div, .menu-buttons button
+{
   background-color: #fafafa;
   border: none;
   border-bottom: 2px solid #d2d2d2;
@@ -37,13 +40,15 @@ body {
   width: 100%;
 }
 
-.menu-buttons button {
+.menu-buttons button
+{
   font-family: 'Open Sans', sans-serif;
   font-size: 1.25em;
   text-align: center;
 }
 
-.flashcard {
+.flashcard
+{
   background: #66ccff;
   border-radius: 10px;
   box-shadow: 0 8px #00aaff;
@@ -68,7 +73,8 @@ body {
   left: 0;
 }
 
-.flashcard-box {
+.flashcard-box
+{
   padding: 25px;
   position: relative;
   height: 300px;
@@ -78,40 +84,47 @@ body {
   overflow: hidden;
 }
 
-.flashcard.definition {
+.flashcard.definition
+{
   background: white;
   box-shadow: 0 8px #ffcc66;
   color: black;
   z-index: 2;
 }
 
-.flashcard-box.show-word .definition {
+.flashcard-box.show-word .definition
+{
   display: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6
+{
   font-family: 'Nunito', sans-serif;
   margin: 0;
   text-align: center;
 }
 
-p{
+p
+{
   font-family: 'Nunito', sans-serif;
   margin-top:-20px; 
   padding-left: 25px;
   font-size: 36px;
 }
 
-#line{
+#line
+{
   border-bottom: 2px solid #cfcfcf;
   align-items: center;
 }
 
-.inactive {
+.inactive
+{
   display: none !important;
 }
 
-#main {
+#main
+{
   align-items: center;
   box-sizing: border-box;
   display: flex;
@@ -120,7 +133,8 @@ p{
   justify-content: center;
 }
 
-#main .status {
+#main .status
+{
   background-color: #b6d9d9;
   box-sizing: border-box;
   border-radius: 10px;
@@ -130,7 +144,8 @@ p{
   width: 275px;
 }
 
-#menu {
+#menu
+{
   align-items: center;
   box-sizing: border-box;
   display: flex;
@@ -138,7 +153,8 @@ p{
   width: 100vw;
 }
 
-#menu .contents, #results {
+#menu .contents, #results
+{
   background-color: white;
   border-radius: 10px;
   box-sizing: border-box;
@@ -147,26 +163,31 @@ p{
   width: 95vw;
 }
 
-#menu .contents header {
+#menu .contents header
+{
   margin: 1em 0;
 }
 
-#menu .contents header h1 {
+#menu .contents header h1
+{
   font-size: 2.5em;
 }
 
-#menu .contents header h2 {
+#menu .contents header h2
+{
   font-weight: normal;
 }
 
-#results {
+#results
+{
   font-size: 1.25em;
   max-width: 400px;
   padding: 0.5em;
   text-align: center;
 }
 
-#results .percent {
+#results .percent
+{
   font-weight: bold;
   font-size: 3em;
 }

@@ -7,20 +7,22 @@
 // - Adding methods
 // - Adding additional fields
 
-class FlashcardScreen {
-  constructor(containerElement) {
-    this.containerElement = containerElement;
-    this.flashcardContainer = containerElement.querySelector('#flashcard-container');
-    this.rightContainer = containerElement.querySelector('.status .correct');
-    this.wrongContainer = containerElement.querySelector('.status .incorrect');
-    this.CARDS = null;
-    this.WORDS = null;
-    this.nowCard = null;
+class FlashcardScreen
+{
+  constructor(element)
+  {
+    this.element = element;
+    this.flashcardContainer = element.querySelector('#flashcard-container');
+    this.count_right = element.querySelector('.status .correct');
+    this.count_wrong = element.querySelector('.status .incorrect');
+    this.display_card = null;
+    this.key = null;
+    this.current = null;
     this.cards = [];
     this.index = -1;
-    this.totalCards = 0;
-    this.totalRight = 0;
-    this.totalWrong = 0;
+    this.total_card = 0;
+    this.total_right = 0;
+    this.total_wrong = 0;
     this.right = 0;
     this.wrong = 0;
 
@@ -32,79 +34,99 @@ class FlashcardScreen {
     document.addEventListener('slide-out', this.slideOut);
   }
 
-  show(index) {
-    this.containerElement.classList.remove('inactive');
-    this.rightContainer.textContent = this.totalRight;
-    this.wrongContainer.textContent = this.totalWrong;
+  show(index)
+  {
+    this.element.classList.remove('inactive');
+    this.count_right.textContent = this.total_right;
+    this.count_wrong.textContent = this.total_wrong;
     this.index = index;
-    if(this.totalCards === 0) {
-      this.CARDS = FLASHCARD_DECKS[index].words;
-      this.WORDS = Object.keys(this.CARDS);
+
+    if(this.total_card === 0)
+    {
+      this.display_card = FLASHCARD_DECKS[index].words;
+      this.key = Object.keys(this.display_card);
       this.createFlashcard();
     }
 
     this.drawCard();
   }
 
-  hide() {
-    this.containerElement.classList.add('inactive');
+  hide()
+  {
+    this.element.classList.add('inactive');
   }
 
-  reset() {
-    for(let i=0; i<this.totalCards; i++) {
+  reset()
+  {
+    for(let i=0; i<this.total_card; i++)
+    {
       this.cards.splice(0,1);
     }
-    this.CARDS = null;
-    this.WORDS = null;
+    
+    this.display_card = null;
+    this.key = null;
     this.index = -1;
-    this.totalCards = 0;
-    this.totalRight = 0;
-    this.totalWrong = 0;
+    this.total_card = 0;
+    this.total_right = 0;
+    this.total_wrong = 0;
     this.right = 0;
     this.wrong = 0;
   }
 
-  createFlashcard() {
-    this.totalCards = this.WORDS.length;
-    for(let i=0; i<this.totalCards; i++) {
-      const card = new Flashcard(this.flashcardContainer,  this.WORDS[i], this.CARDS[this.WORDS[i]]);
+  createFlashcard()
+  {
+    this.total_card = this.key.length;
+    for(let i=0; i<this.total_card; i++) {
+      const card = new Flashcard(this.flashcardContainer,  this.key[i], this.display_card[this.key[i]]);
       this.cards.push(card);
     }
   }
 
-  drawCard() {
-    if(this.totalCards !== 0) {
-      this.nowCard = this.cards.splice(0,1).pop();
-      this.nowCard.show();
-      this.totalCards--;
+  drawCard()
+  {
+    if(this.total_card !== 0) {
+      this.current = this.cards.splice(0,1).pop();
+      this.current.show();
+      this.total_card = this.total_card - 1;
     }
   }
   
-  slideNow(event) {
+  slideNow(event)
+  {
     this.right = event.detail.right; 
     this.wrong = event.detail.wrong;
-    this.rightContainer.textContent =  this.totalRight + this.right;
-    this.wrongContainer.textContent =  this.totalWrong + this.wrong;
+    this.count_right.textContent = this.total_right + this.right;
+    this.count_wrong.textContent = this.total_wrong + this.wrong;
   }
 
   slideOut(event) {
-    this.totalRight = this.totalRight + this.right;
-    this.totalWrong = this.totalWrong + this.wrong;
-    this.nowCard.hide();
-    if(this.wrong === 1) {
-      this.cards.push(this.nowCard);
+    this.total_right = this.total_right + this.right;
+    this.total_wrong = this.total_wrong + this.wrong;
+    this.current.hide();
+
+    if(this.wrong === 1)
+    {
+      this.cards.push(this.current);
     }
 
-    if(this.totalCards === 0) {
-      document.dispatchEvent(new CustomEvent('show-result', {
-        detail: {
-          right: this.totalRight,
-          wrong: this.totalWrong,
+    if(this.total_card === 0)
+    {
+      document.dispatchEvent(new CustomEvent('show-result',
+      {
+        detail:
+        {
+          right: this.total_right,
+          wrong: this.total_wrong,
           titleIndex: this.index
-        }}));
-      this.totalCards = this.totalWrong;
-      this.totalWrong = 0;
-    }else {
+        }
+      }));
+
+      this.total_card = this.total_wrong;
+      this.total_wrong = 0;
+    }
+
+    else
+    {
       this.drawCard();
     }
   }

@@ -6,33 +6,40 @@
 // - Adding methods
 // - Adding additional fields
 
-class MenuScreen {
-  constructor(containerElement) {
-    this.containerElement = containerElement;
-    this.menus = [];
+class MenuScreen
+{
+  constructor(element) {
+    this.element = element;
+    this.object = [];
     
     this.createMenu();
   }
 
-  show() {
-    this.containerElement.classList.remove('inactive');
+  show()
+  {
+    this.element.classList.remove('inactive');
   }
 
-  hide() {
-    this.containerElement.classList.add('inactive');
+  hide()
+  {
+    this.element.classList.add('inactive');
   }
   
-  createMenu() {
-    for(const source of FLASHCARD_DECKS) {
-      const menu = new Menu(this.containerElement, source.title);
-      this.menus.push(menu);
+  createMenu()
+  {
+    for(const source of FLASHCARD_DECKS)
+    {
+      const menu = new Menu(this.element, source.title);
+      this.object.push(menu);
     }
   }
 }
 
-class Menu {
-  constructor(containerElement, menuTitle) {
-    this.containerElement = containerElement.querySelector('#choices');
+class Menu
+{
+  constructor(element, menuTitle)
+  {
+    this.element = element.querySelector('#choices');
     this.title = menuTitle;
     this.index = -1;
 
@@ -41,17 +48,22 @@ class Menu {
     this.divi = document.createElement('div');
     this.divi.textContent = this.title;
     this.divi.addEventListener('click', this.changeMain);
-    this.containerElement.append(this.divi);
+    this.element.append(this.divi);
   }
 
-  changeMain() {
-    this.index = FLASHCARD_DECKS.map(function(item) {
+  changeMain()
+  {
+    this.index = FLASHCARD_DECKS.map(function(item)
+    {
       return item.title;
     }).indexOf(this.title);
 
-    document.dispatchEvent(new CustomEvent('show-main', {
-      detail: {
+    document.dispatchEvent(new CustomEvent('show-main',
+    {
+      detail:
+      {
         titleIndex: this.index
-      }}));
+      }
+    }));
   }
 }

@@ -7,13 +7,13 @@
 // - Adding additional fields
 
 class ResultsScreen {
-  constructor(containerElement) {
-    this.containerElement = containerElement;
-    this.percentContainer = containerElement.querySelector('.percent');
-    this.correctContainer = containerElement.querySelector('.correct');
-    this.incorrectContainer = containerElement.querySelector('.incorrect');
-    this.continueContainer = containerElement.querySelector('.menu-buttons .continue');
-    this.backMenuContainer = containerElement.querySelector('.menu-buttons .to-menu');
+  constructor(element) {
+    this.element = element;
+    this.percentContainer = element.querySelector('.percent');
+    this.correctContainer = element.querySelector('.correct');
+    this.incorrectContainer = element.querySelector('.incorrect');
+    this.continueContainer = element.querySelector('.menu-buttons .continue');
+    this.backMenuContainer = element.querySelector('.menu-buttons .to-menu');
     this.index = -1;
 
     this.backtoMain = this.backtoMain.bind(this);
@@ -23,7 +23,7 @@ class ResultsScreen {
   }
 
   show(numberCorrect, numberWrong, index) {
-    this.containerElement.classList.remove('inactive');
+    this.element.classList.remove('inactive');
     this.index = index;
     const percent = Math.round(numberCorrect/(numberCorrect + numberWrong)*100);
     this.percentContainer.textContent = percent;
@@ -41,7 +41,7 @@ class ResultsScreen {
   }
 
   hide() {
-    this.containerElement.classList.add('inactive');
+    this.element.classList.add('inactive');
   }
 
   backtoMenu() {
